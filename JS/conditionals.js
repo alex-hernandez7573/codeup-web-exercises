@@ -29,13 +29,15 @@
 //         return "blue is the color of the sky";
 //     } else if (str === 'cyan') {
 //         return "I don't know anything about cyan";
+//     } else {
+//         return "I dont know anything about this color";
 //     }
 //
 // }
 // console.log (analyzeColor("red"));
 // console.log (analyzeColor("blue"));
 // console.log (analyzeColor("cyan"));
-
+//
 
 
 // Don't change the next two lines!
@@ -75,10 +77,13 @@ function analyzeColor (str) {
             return " Amethyst is violet";
         case 'cyan':
             return " exotic bird eggs can be cyan sometimes";
+        default:
+            return "I dont know anything about this color";
     }
 }
 
-console.log (analyzeColor("green"));
+console.log (analyzeColor("magenta"));
+console.log (analyzeColor(randomColor))
 
 /**
  * TODO:
@@ -87,7 +92,7 @@ console.log (analyzeColor("green"));
  * function to show it to the user.
  */
 
-var giveMeTheColorNow = prompt('Enter the color or else!');
+var giveMeTheColorNow = prompt('Enter the color or else!').toLocaleLowerCase();
 var colorgiven = analyzeColor(giveMeTheColorNow);
 console.log (colorgiven);
 alert (colorgiven);
@@ -142,7 +147,7 @@ console.log(calculateTotal(3, 100));
 console.log(calculateTotal(4, 100));
 console.log(calculateTotal(5, 100));
 
-///// wrong attmept
+///// WRONG ATTEMPTS
 // var discount;
 //    case luckyNumber === 0;
 //        return discount = 0;
@@ -184,6 +189,26 @@ console.log(calculateTotal(5, 100));
  */
 // Generate a random number between 0 and 6
  var luckyNumber = Math.floor(Math.random() * 6);
+ //
+ // var userTotal = parseFloat(prompt("what is the total amount?"));
+ // alert("your lucky number is "+luckyNumber);
+ // alert(calculateTotal( luckyNumber,userTotal));
+
+// var participate = confirm ("Enter for a discount number?")
+//
+// if (participate) {
+// var theTotal = prompt("ENTER THE BILL TOTAL!NOW!");
+// var theEnterTotal = calculateTotal(luckyNumber, theTotal);
+//
+// alert ("The lucky number was: "+luckyNumber);
+// alert("the total you entered was: "+theTotal);
+// alert("Wooo the final price is: "+theEnterTotal);
+//
+// }else {
+//     alert("ahh well maybe next time");
+// }
+// console.log ("we working?");
+//
 
 /**
  * TODO:
@@ -202,15 +227,49 @@ console.log(calculateTotal(5, 100));
  * HINT: The way we prompt for a value could be improved
  */
 
-var theTotal = prompt("ENTER THE BILL TOTAL! NOW!");
-var theEnterTotal = calculateTotal(luckyNumber, theTotal);
+// var particpate = confirm("Would you like to enter a number?");
+//  if (particpate){
+//      var userNumber = parseFloat(prompt("Please enter a number"));
+//      if (isNanN(userNumber)) {
+//          alert (userNumber + "is not a number")
+//      }
+//      if (userNumber % 2 === 0) {
+//          alert ( "your number is even");
+//      } if (userNumber % 2 === 1) {
+//          alert("your number is odd");
+//      } if ( userNumber > 0 ) {
+//          alert("you number is postive");
+//      } else {
+//          alert(" your number is a negative one");
+//      }
+//      alert(userNumber + 100 + " add 100");
+//  }
+//
+//
 
-alert ("The lucky number was: "+luckyNumber);
-alert("the total you entered was: "+theTotal);
-alert("Wooo the final price is: "+theEnterTotal);
+var participate  = confirm("Would you like to enter a number?");
+var numberEntry;
+function isoddOrEven (num) {
+    return (num % 2 === 0) ? "this number is even " : "this number is odd";
+}
+function isNegativeOrPostive (num) {
+    return (num > 0 ) ? "this number is postive" : "this number is negative";
+}
 
+function plus100 (num) {
+    return "your number is " + parseFloat(num+100)+ " when added with 100";
+}
 
-console.log ("we working?");
+if (participate) {
+    numberEntry = prompt("Please enter a number");
+    if (isNaN(numberEntry)){
+        alert("sorry that's not a number");
+    } else {
+        alert(isoddOrEven(numberEntry));
+        alert(isNegativeOrPostive(numberEntry));
+        alert(plus100(numberEntry));
+    }
 
-
-
+} else {
+    alert("Next time")
+}
