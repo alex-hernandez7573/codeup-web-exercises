@@ -32,4 +32,9 @@ for (var i = 1; i<9; i++)
     console.log(numberPyr);
 }
 
+for (var x =100; x>=5;x--){
+    if(x%5===0){
+        console.log(x);
+    }
+}
 
