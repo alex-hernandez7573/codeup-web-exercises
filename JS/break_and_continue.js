@@ -1,10 +1,17 @@
 "use strict"
-// for ( i = 0 ; i < 50; i++ )
+
+// var userNumber;
+//
+// while (userNumber % 2 === 0)
 // {
-//     if (i === 27){
-//         console.log ("Skipping!")
+//     userNumber = prompt('Enter a number between 1 and 50');
+// }
+//
+// for (var i = 0; i < 50; i++){
+//     if(i===userNumber){
+//         console.log ("Skipping this number"+[i]);
 //         continue;
 //     }
-//     console.log ("the number is " + i + " !");
+//     console.log("the number is "+i+" !");
 // }
 
