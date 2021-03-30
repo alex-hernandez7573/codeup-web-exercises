@@ -35,16 +35,19 @@
      * array.
      */
 
-    for (var i = 0; i < names.length; i++)
-        {
-            console.log ("Index: "+i+" Name: "+names[i]);
-        }
+    // for (var i = 0; i < names.length; i++)
+    //     {
+    //         console.log ("Index: "+i+" Name: "+names[i]);
+    //     }
 
     /**
      * TODO:
      * Refactor your above code to use a `forEach` loop
      */
 
+    names.forEach(function (names,index){
+        console.log ("Name: "+ names +" index point of "+index);
+    })
 
 
     /**
@@ -61,4 +64,23 @@
      *  > last([1, 2, 3, 4, 5]) // return 5
      */
 
+    var num = [1,2,3,4,5];
+
+    function first (hoorays) {
+        return hoorays [0];
+    }
+    function  second (hoorays) {
+        return hoorays [1];
+    }
+    function third (hoorays) {
+        return hoorays [hoorays.length - 1];
+    }
+
+    console.log(first(num));
+    console.log (second(num));
+    console.log(third(num));
+
 })();
+
+
+
