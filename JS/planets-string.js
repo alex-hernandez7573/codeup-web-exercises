@@ -30,15 +30,24 @@
      * string, and <li> tags around each planet.
      */
 
-      //# Bonus 1
+      //# Todo 2 BR
         var planetsBR = planetsArray.join("<br>");
         console.log (planetsBR);
-        document.write(planetsBR)
+        document.write(planetsBR);
 
-     //# Bonus 2
-        var planetLiUl ="<ul><li>"+planetsArray.join("<li></li>")+"</li></ul>";
-        console.log (planetLiUl);
-        document.write(planetLiUl)
+     //# Bonus 1
+     //    var planetLiUl ="<ul><li>"+planetsArray.join("<li></li>")+"</li></ul>";
+     //    console.log (planetLiUl);
+     //    document.write(planetLiUl);
+     //
+        // better way
+
+        var planetsList = "<ul>"
+        planetsArray.forEach(function (planet){
+            planetsList += "<li>"+planet+"</li>";
+        })
+
+        document.write(planetsList);
 
 
 })();
