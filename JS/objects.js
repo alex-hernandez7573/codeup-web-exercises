@@ -54,11 +54,21 @@
      * and console.log the relevant messages for each person
      */
 
-    // var shoppers = [
-    //     {name: 'Cameron', amount: 180},
-    //     {name: 'Ryan', amount: 250},
-    //     {name: 'George', amount: 320}
-    // ];
+    var shoppers = [
+        {name: 'Cameron', amount: 180},
+        {name: 'Ryan', amount: 250},
+        {name: 'George', amount: 320}
+    ];
+
+    shoppers.forEach(function (thisShopper){
+        if (thisShopper.amount >= 200) {
+            var discountedTotal = thisShopper.amount - (thisShopper.amount * .12);
+            console.log ("|Name: "+thisShopper.name+"| Amount before discount: "+thisShopper.amount+"| Discount Total: "+discountedTotal+" |");
+        } else  {
+            console.log ("Did not exceed or equal of 200. No Discount applied");
+            console.log ("|Name: "+thisShopper.name+ "| Amount Total: "+ thisShopper.amount+"|");
+        }
+    })
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
@@ -72,6 +82,59 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
+    var booksArray = [ {
+        title:"Mass Effect Revelation",
+            author: {
+                firstName:"Drew",
+                lastName:"Karpyshyn"}
+            },
+        {title:"Dishonored: The Corroded Man",
+            author: {
+                firstName:"Adam",
+                lastName:"Christopher"}
+            },
+        {title:"Atlas Shrugged",
+            author: {
+                firstName:"Ayn",
+                lastName:"Rand"}
+            },
+        {title:"Nineteen Eighty-Four",
+            author: {
+                firstName:"George",
+                lastName:"Orwell"}
+            },
+        {title:"Brave New World",
+            author: {
+                firstName:"Aldous",
+                lastName:"Huxley"}
+            },
+        {title:"Fahrenheit 451",
+            author: {
+                firstName:"Ray",
+                lastName:"Bradbury"}
+        }
+                    ];
+
+    console.log(booksArray[0].title);
+    //console.log(typeof (booksArray[0].title));
+    console.log(booksArray[0].author.firstName);
+    console.log(booksArray[0].author.lastName);
+    console.log(booksArray[1].title);
+    console.log(booksArray[1].author.firstName);
+    console.log(booksArray[1].author.lastName);
+    console.log(booksArray[2].title);
+    console.log(booksArray[2].author.firstName);
+    console.log(booksArray[2].author.lastName);
+    console.log(booksArray[3].title);
+    console.log(booksArray[3].author.firstName);
+    console.log(booksArray[3].author.lastName);
+    console.log(booksArray[4].title);
+    console.log(booksArray[4].author.firstName);
+    console.log(booksArray[4].author.lastName);
+    console.log(booksArray[5].title);
+    console.log(booksArray[5].author.firstName);
+    console.log(booksArray[5].author.lastName);
+
 
     /**
      * TODO:
@@ -98,6 +161,17 @@
      *      ...
      */
 
+        booksArray.forEach( function (bookInformation){
+            console.log("Book # "+(booksArray.indexOf(bookInformation)+1));
+            console.log("Title: "+ bookInformation.title);
+            console.log("Author: "+bookInformation.author.lastName+" ,"+bookInformation.author.firstName);
+            console.log("---");
+
+        });
+
+
+
+
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -108,5 +182,25 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
+    function createBook (title, firstName, lastName) {
+        booksArray.push ({
+            title: title,
+            author: {
+                firstName: firstName,
+                lastName: lastName
+            }
+        });
+    }
+
+    createBook("Moby Dick","Herman","Melville");
+
+    function thisBookInfo (thisBook) {
+        console.log("Book # -New Book- ");
+        console.log("Title: "+ thisBook.title);
+        console.log("Author: "+thisBook.author.lastName+" ,"+thisBook.author.firstName);
+        console.log("---");
+    }
+    thisBookInfo(booksArray[6]);
 
 })();
