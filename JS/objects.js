@@ -203,4 +203,11 @@
     }
     thisBookInfo(booksArray[6]);
 
+
+    console.log ("hello I need to see if git is still working");
+    console.log (1+1+3);
+
+
+
+
 })();
