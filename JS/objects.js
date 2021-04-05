@@ -187,8 +187,8 @@
         booksArray.push ({
             title: title,
             author: {
-                firstName: firstName,
-                lastName: lastName
+                firstName: firstName,                lastName: lastName
+
             }
         });
     }

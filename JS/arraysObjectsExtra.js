@@ -25,7 +25,7 @@ function createCharcter (firstName, armorRating , magicRating) {
     });
 }
 // from function my charcter creator function, Im able to prompt the user to input basic stats of armor and magic ratings
-createCharcter(prompt("enter name"),prompt("enter armor rating"),prompt("enter magic rating"));
+//createCharcter(prompt("enter name"),prompt("enter armor rating"),prompt("enter magic rating"));
 
 // # 2
 //Write a function, getOlder() that takes in array of dog objects
@@ -57,6 +57,41 @@ dogArray.forEach(function (doggyInfo){
     console.log ("---");
 
 });
+
+// # 3
+//Write a function, washCars() that takes in a
+// array of car objects
+// and sets the boolean properties of isDirty to false.
+
+let carWashArray = [
+    {
+        make : "Ford",
+        color : "White",
+        year : "2019",
+        isDirty : true
+    },{
+        make : "Volvo",
+        color : "grey",
+        year : "2012",
+        isDirty : true
+    },{
+        make : "Honda",
+        color : "blue",
+        year : "2012",
+        isDirty : true
+    },{
+        make : "Mazda",
+        color : "red",
+        year : "2017",
+        isDirty : false,
+    }
+];
+
+//
+
+
+
+
 
 
 
