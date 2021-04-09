@@ -1,4 +1,27 @@
+@font-face {
+    font-family: "Ubuntu";
+    src: url(https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap);
+}
+@font-face {
+    font-family: Ubuntu;
+    src: url("");
+}
+
+
 
 .fancy-header {
     color: darkblue;
+    text-decoration: underline;
 }
+body {
+    background-color: coral;
+    font-family: sans-serif;
+}
+
+ol {
+    list-style: upper-alpha;
+}
+ul{
+    list-style: upper-roman;
+}
+
