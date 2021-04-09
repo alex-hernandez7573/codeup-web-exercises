@@ -4,17 +4,35 @@ body, html {
     padding: 0;
     margin: 0;
     font-family: Arial, Ubuntu, sans-serif;
+
 }
 .message-info {
     background-color: #ccdefd;
-
+    color: rgba(0,0,0,0.7) ;
+    font-weight: lighter;
 }
 .message-success {
     background-color: #cef3db;
+    color: rgba(0,0,0,0.7) ;
+    font-weight: lighter;
 }
 .message-warning {
     background-color: #fdfbcc;
+    color: rgba(0,0,0,0.7) ;
+    font-weight: lighter;
 }
 .message-error {
     background-color: #fbd3d7;
+    color: rgba(0,0,0,0.7) ;
+    font-weight: lighter;
+}
+
+
+
+.message {
+    padding: 15px 15px 15px 15px;
+    border: 1px solid #EBEBEB;
+    margin: 5px;
+    border-radius: 3px;
+
 }
