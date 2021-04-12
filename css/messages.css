@@ -8,31 +8,29 @@ body, html {
 }
 .message-info {
     background-color: #ccdefd;
-    color: rgba(0,0,0,0.7) ;
-    font-weight: lighter;
+    color: rgba(0,0,0,0.55) ;
 }
+
 .message-success {
     background-color: #cef3db;
-    color: rgba(0,0,0,0.7) ;
-    font-weight: lighter;
+    color: rgba(0,0,0,0.55) ;
+
+
+
 }
 .message-warning {
     background-color: #fdfbcc;
-    color: rgba(0,0,0,0.7) ;
-    font-weight: lighter;
+    color: rgba(0,0,0,0.55) ;
+
 }
 .message-error {
     background-color: #fbd3d7;
-    color: rgba(0,0,0,0.7) ;
-    font-weight: lighter;
+    color: rgba(0,0,0,0.55) ;
 }
-
-
 
 .message {
     padding: 15px 15px 15px 15px;
     border: 1px solid #EBEBEB;
     margin: 5px;
     border-radius: 3px;
-
 }
