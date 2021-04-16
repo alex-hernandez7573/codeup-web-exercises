@@ -23,7 +23,7 @@ ul {
 
 a {
     display: inline-block;
-    font-weight: bolder;
+    font-weight: lighter;
     text-decoration: none;
     color: black;
 }
@@ -31,7 +31,7 @@ a {
 ul li:not(.logo) {
     display: inline-block;
     margin: 1em;
-    z-index: 1;
+    /*z-index: 0;*/
 }
 
 nav li:nth-child(5) {
