@@ -25,6 +25,19 @@
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
 
+<button class="button" id="changeHeader" type="button">Change Main Header</button>
+<br>
+<button class="button" id="changeSubheader" type="button">Change SubHeader</button>
+<br>
+<button class="button" id="changeOtherGrey" type="button">Every other item on list to grey.</button>
+<br>
+<button class="button" id="changeToBlue" type="button">Change the first Item to blue on the list.</button>
+<br>
+<button class="button" id="changeSubPara" type="button">Change to Mission Accomplished, Subpar.</button>
+<br>
+
+
+
 <script>
     (function() {
         "use strict";
@@ -34,37 +47,60 @@
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
 
-        mainHeader.innerHTML= "JavaScript is Cool";
-
-
+        document.getElementById("changeHeader").addEventListener("click",changeMainHeader, false);
+        function changeMainHeader () {
+            mainHeader.innerHTML= "JavaScript is Cool";
+        }
 
         // TODO: Uncomment the next line and get the sub header element by id
         var subHeader = document.getElementById("sub-header");
 
         // TODO: Set the text color of subHeader to blue
 
-        subHeader.style.color = '#0000ff';
-
+        document.getElementById("changeSubheader").addEventListener("click",changeSubHeader, false);
+        function changeSubHeader () {
+            subHeader.style.color = '#0000ff';
+        }
 
         // TODO: Uncomment the next line and get all list items
         var listItems = document.getElementsByTagName('li');
 
 
         // TODO: Set text color on every other list item to grey
-        // TODO: Set text color of li with dbid = 1 to blue
 
-        for (var i = 0; i<listItems.length; i++) {
-
-            if (listItems[i].getAttribute('data-dbid') === '1') {
-                listItems[i].style.color = "blue";
-                // continue;
-            }
-            if (i % 2 !== 0) {
-                listItems[i].style.color = "grey";
-            }else{
-
+        document.getElementById("changeOtherGrey").addEventListener("click",changeTextGrey,false);
+        function changeTextGrey () {
+            for (var i = 0; i < listItems.length; i++) {
+                if (i%2 !== 0) {
+                    listItems[i].style.color = "grey";
+                }
             }
         }
+
+        // TODO: Set text color of li with dbid = 1 to blue
+
+        document.getElementById("changeToBlue").addEventListener("click",changeTextBlue,false);
+        function changeTextBlue () {
+            for (var i = 0; i < listItems.length; i++) {
+
+                if (listItems[i].getAttribute('data-dbid') === '1') {
+                    listItems[i].style.color = "blue";
+                }
+            }
+        }
+
+        // for (var i = 0; i<listItems.length; i++) {
+        //
+        //     if (listItems[i].getAttribute('data-dbid') === '1') {
+        //         listItems[i].style.color = "blue";
+        //         // continue;
+        //     }
+        //     if (i % 2 !== 0) {
+        //         listItems[i].style.color = "grey";
+        //     }else{
+        //
+        //     }
+        // }
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
 
@@ -72,7 +108,12 @@
 
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
-        subParagraphs[0].innerHTML = "Mission Accomplished";
+
+        document.getElementById("changeSubPara").addEventListener("click",changeSubParaG, false);
+        function changeSubParaG () {
+            subParagraphs[0].innerHTML = "Mission Accomplished";
+        }
+
 
     })();
 </script>
