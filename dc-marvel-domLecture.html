@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marvel Vs DC</title>
+  <style>
+    .hotpink {
+      color: hotpink;
+    }
+
+  </style>
+
+
+</head>
+<body>
+<p id=Like"">I like</p>
+<p id="dontlike">I dont Like</p>
+<p id="marvel">Marvel</p>
+<p id="dc">DC</p>
+
+<!--<form name = "change color">-->
+<!--    <label for = "colorPrefrence">Enter Your Color</label>-->
+<!--    <input type="text" name="colorPrefernce" id="colorPrefrence">-->
+<!--</form>-->
+
+
+<script>
+  // document.getElementById("dc");
+
+  // var accessTheDom = document.getElementById("dc");
+  // var showMe =  accessTheDom.innerHTML;
+  //
+  // // var allofItatOnce = document.getElementById()
+  //
+  // alert(showMe);
+
+  var like = document.getElementById("like");
+  var dontLike = document.getElementById("dontlike");
+  var dc = document.getElementById("dc")
+  // dc.innerHTML = dc.innerHTML + " Animated Universe";
+  // var output = like.innerHTML+ ' ' + dc.innerHTML;
+
+  var marvel = document.getElementById("marvel");
+  marvel.setAttribute('class','hotpink')
+  marvel.innerHTML = marvel.innerHTML + ' Cinematic Universe';
+
+  marvel.setAttribute('class','hotpink')
+  dc.setAttribute('class','hotpink')
+  // alert(output);
+
+  var hotPinks = document.getElementsByClassName('hotpink');
+
+
+  // returns an nodeList <------
+
+  // hotPinks[0].style.color = 'blue';
+  // hotPinks[1].style.color = 'green';
+  // hotPinks[1].style.fontFamily = 'sans-serif';
+  // hotPinks[1].style.blink() ;
+
+  for (var i  = 0; i<hotPinks.length; i++) {
+      hotPinks[i].style.color = 'green';
+  }
+
+  // cssom
+
+
+
+</script>
+
+
+</body>
+</html>
