@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Exercises</title>
+    <script>
+        window.onload = function() {
+           console.log("Loading....")
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#hide").click(function(){
+                $("p").hide();
+            });
+            $("#show").click(function(){
+                $("p").show();
+            });
+        });
+    </script>
+    <script>
+
+    </script>
+</head>
+<body>
+<h1>Welcome to jQuery Exercises</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum consequat neque at posuere. Praesent
+    malesuada lectus et lorem ornare euismod. Sed suscipit lorem nec ligula pharetra pulvinar. Pellentesque a ante
+    tortor. Quisque eu massa pretium, varius lectus vitae, sollicitudin dolor. Donec imperdiet sem ut turpis suscipit
+    pulvinar. Vestibulum feugiat imperdiet dictum. Phasellus dapibus tellus risus, congue elementum diam fermentum in.
+    In egestas lorem eu risus vestibulum, non porta risus aliquet. Aliquam fringilla semper dolor eget rhoncus. Nulla ac
+    diam mauris. Vivamus congue imperdiet leo, sit amet consectetur erat laoreet vel. Proin malesuada eu ante eu
+    fringilla.</p>
+
+<ul id = "fruitList">
+    <h3>Name of Five Fruits</h3>
+    <li class="fruitItem">Apple</li>
+    <li class="fruitItem">Grape</li>
+    <li class="fruitItem">Banana</li>
+    <li class="fruitItem">Pear</li>
+    <li class="fruitItem">Orange</li>
+</ul>
+<div class="container" id="paragraph">
+    <p>Nunc enim lectus, fringilla quis sollicitudin eu, aliquet ac orci. Duis vel condimentum dui. Integer id lectus
+        viverra, aliquam ex non, blandit enim. Etiam quis turpis vel elit placerat sodales dictum a velit. Quisque
+        rhoncus libero sed ex molestie viverra. Pellentesque auctor condimentum auctor. Curabitur ipsum nunc,
+        condimentum in ligula nec, porta consequat arcu. Donec vulputate eleifend risus sit amet scelerisque.
+        Suspendisse sit amet feugiat ipsum, eu sollicitudin turpis. Aliquam vehicula vel odio in accumsan.</p>
+</div>
+
+<!--if writing inline jq this is how to do it-->
+<script src="JS/jquery-3.6.0.js"></script>
+<script>
+    // $("h1, h2, p").html ("Testing jQuery");
+    // $("*").css("font-style", "italic");
+    // $("p").hide();
+</script>
+
+<p>Try to hide me</p>
+<button id="hide">Hide</button>
+<button id="show">Show</button>
+
+<script src="JS/jquery-3.6.0.js"></script>
+<script>
+    // $(*).css("font-style", "italic");
+</script>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</body>
+</html>
