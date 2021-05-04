@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top 10 National Parks</title>
+
+    <style>
+
+        .invisible {
+            visibility: hidden;
+        }
+        .highlight {
+            background-color: hotpink;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<h1>Best National Parks USA:</h1>
+
+<dl>
+    <dt>Yosemite</dt>
+    <dd class="invisible">California's most-visited national park stands out for its bevy of impressive waterfalls, such as
+        Vernal
+        Fall and Bridalveil Fall, as well as unique granite rock formations like the Half Dome and El Capitan. </dd>
+
+    <dt>Yellowstone</dt>
+    <dd class="invisible" >Even if Yellowstone didn't hold the incredible distinction of being the world's first national park, the 2.2
+        million-acre park could easily stand on its own for its unique natural attractions and diverse geography. </dd>
+
+    <dt>Glacier National Park</dt>
+    <dd class="invisible" >Water and mountains define this national park, which spans two mountain ranges and includes more than 700
+        lakes across Montana. </dd>
+
+    <dt>Grand Canyon</dt>
+    <dd class="invisible" >The Grand Canyon is so magnificent that even the highest quality photos don't do the
+        park's beauty justice –
+        you just have to see it in person. </dd>
+
+    <dt>Zion National Park</dt>
+    <dd class="invisible" >This Utah national park is a paradise for thrill-seekers. Hike Angel's Landing, which
+        brings you up through a
+        nearly 1,500-foot natural staircase, or trek The Narrows, a 10-mile hike through the thinnest section of Zion Canyon, which requires hikers to travel upstream through the Virgin River.</dd>
+
+    <dt>Grand Teton National Park</dt>
+    <dd class="invisible">Jackson Hole's backcountry is a wild wonderland begging to be explored. Once home to ranchers and fur
+        trappers, the park now offers more than 200 miles of trails that weave through prairies, lakes and the park's most remarkable attribute, the jagged, snow-capped peaks of the Grand Teton mountain range.</dd>
+
+    <dt>Bryce Canyon National Park</dt>
+    <dd class="invisible" >Hoodoos are odd-shaped pillars of rock left standing from forces of erosion, and Bryce Canyon is home to the
+        most extensive collection of hoodoos in the world. Located in southern Utah, the roughly 35,835-acre park offers an array of hiking opportunities.</dd>
+
+    <dt>Arches National Park</dt>
+    <dd class="invisible" >Established in 1929, Arches National Park covers nearly 77,000 acres in eastern Utah. Oddly shaped sandstone
+        monuments riddle every view, and the formations make the park an excellent place for backpackers, rock climbers and hikers, not to mention photographers.</dd>
+
+    <dt>Rocky Mountain National Park</dt>
+    <dd class="invisible" >The Rockies earn plenty of points for their convenience. Sitting just 70 miles north of Denver, the area
+        makes for an easy daytrip. However, you could spend days exploring this park. The Rockies' magnificent landscape is one for the books, featuring 355 miles of scenic trails, 147 lakes and 118 peaks taller than 10,000 feet. </dd>
+
+    <dt>Haleakala National Park</dt>
+    <dd class="invisible" >Come to this national park on Maui and you'll be treated to one of the best sunrises in the world. The name
+        of this Hawaiian park actually translates to "house of the sun," and it's easy to see why once you've reached the visitors center, where fellow travelers gather to witness the sunrise from more than 10,000 feet above sea level.</dd>
+</dl>
+
+<script src="JS/jquery-3.6.0.js"></script>
+<script>
+ $("h1").click(function (){
+     $("dd").toggleClass('invisible')
+ })
+ $("dt").hover (function () {
+     $(this).toggleClass("highlight")
+ })
+
+</script>
+</body>
+</html>
