@@ -18,25 +18,18 @@
     </thead>
     <tbody id="insertProducts"></tbody>
 </table>
+
 <main id="library">
 
 </main>
 
-<button id="the-button">Json</button>
+<button id="the-button">Refresh</button>
+
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 <script>
     "use strict";
-    (//
-
-    function buildStuff () {
-        $("#library").html("");
-        $.ajax("data/inventory.json").done(function (inventory) {
-            console.log(inventory);
-        })
-
-
     // TODO: Create an AJAX GET request for the file under data/inventory.json
     // TODO: Take the data from inventory.json and append it to the products table
     //       HINT: Your data should come back as a JSON object; use console.log() to inspect
@@ -44,10 +37,36 @@
     //       HINT: You will want to target #insertProducts for your new HTML elements
 
 
-        $("#the-button").click(buildStuff);
-        buildStuff();
+    function buildStuff () {
+        $("#insertProducts").html("");
+        $.ajax("data/inventory.json").done(function (inventory) {
+            console.log(inventory);
 
-})();
+            for (var item= 0; item < inventory.length; item++) {
+                // var htmlStr = "<div id='inventory-" + (item + 1) + "' class='inventory'>";
+                var htmlStr = "";
+                htmlStr += '<tr>';
+                htmlStr += "<td> " + inventory[item].title + " </td>";
+                htmlStr += "<td> " + inventory[item].quantity + " </td>";
+                htmlStr += "<td> " + inventory[item].price + " </td>";
+
+                htmlStr += '<td>';
+                for ( var catIndex = 0; catIndex < inventory[item].categories.length; catIndex++) {
+                    htmlStr += " "+inventory[item].categories[catIndex];
+                }
+                htmlStr += '</td>';
+                htmlStr += '</tr>';
+
+
+                $("#insertProducts").append(htmlStr);
+            }
+        });
+    }
+
+
+
+    $("#the-button").click(buildStuff);
+     buildStuff();
 
 
 
