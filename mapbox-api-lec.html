@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox API</title>
+<!--mapbox tag-->
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+<body>
+
+<h1>Welcome to MapBox!</h1>
+
+<div id='map' style='width: 500px; height: 500px;'></div>
+<script src="JS/keys.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<script>
+  mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+  var map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/satellite-v9', // style URL
+    center: [-98.4916, 29.4252], // starting position [lng, lat]
+    zoom: 12 // starting zoom
+  });
+
+  map.setStyle("mapbox://styles/mapbox/dark-v10");
+  map.setZoom(9)
+
+//makers  and controls example
+  // changed few values
+  //
+
+  console.log(map.getCenter())
+
+  map.addControl(new mapboxgl.NavigationControl());
+
+  var  marker = new mapboxgl.Marker({
+      color: 'red',
+  })
+
+
+</script>
+
+
+</body>
+</html>

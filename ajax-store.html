@@ -21,7 +21,7 @@
 
 <div id="grad" class="jumbotron">
     <h1 class="display-1">My Tool Store</h1>
-<table id="products" class="table">
+<table id="products" class="table" >
     <thead>
         <tr>
             <th>Title</th>
@@ -33,7 +33,6 @@
     <tbody id="insertProducts"></tbody>
 </table>
     <button id="the-button">Refresh</button>
-
 </div>
 
 
@@ -74,7 +73,7 @@
         });
     }
 
-    $("#the-button").click(buildStuff);
+    $("#the-button").click(buildStuff());
      buildStuff();
 
 

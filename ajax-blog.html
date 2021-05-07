@@ -42,20 +42,18 @@
               htmlStr += "<p>" + blog[blogContent].content + "</p>";
 
               for (var catIndex = 0; catIndex < blog[blogContent].categories.length; catIndex++) {
-                  htmlStr += " <a href='#' class='text-info'>"+blog[blogContent].categories[catIndex]+"</a>";
+                  htmlStr += "<a href='#' class='text-info'> "+blog[blogContent].categories[catIndex]+"</a>";
               }
 
-              htmlStr += "<h3 class='text-muted'>" + blog[blogContent].date + "</h3>";
-
-
+              htmlStr += "<h3>" + blog[blogContent].date + "</h3>";
 
               $("#posts").append(htmlStr);
           }
       });
     }
 
-    $("#updater").click(buildStuff());
-    // buildStuff();
+    $("#updater").click(buildStuff);
+    buildStuff();
 
 
 </script>
