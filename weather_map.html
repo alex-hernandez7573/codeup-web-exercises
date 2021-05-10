@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map Project</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 10px;
+            height: 300px;
+        }
+        .row:after {
+            content:"";
+            display: table;
+            clear: both;
+
+        }
+    </style>
+</head>
+<body>
+<h3>Display the weather of the current city you live in</h3>
+<div class="row">
+    <div class="column" style="background-color: pink" id="dayOne">
+    <h3>Weather</h3>
+    </div>
+    <div class="column" style="background-color: lightblue" id="dayTwo">
+        <h3>Weather</h3>
+    </div>
+    <div class="column" style="background-color: lightgreen" id="dayThree"">
+        <h3>Weather</h3>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="JS/keys.js"></script>
+<script>
+
+    var coordinate = [29.4241, -98.4936];
+    $.get("https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat="+coordinate[0]+ "&lon=" +
+        coordinate[1]+ "&exclude=current,hourly,minute&appid="+WEATHER_MAP_TOKEN)
+        .done(function (resp){
+            console.log(resp);
+            var today= resp.daily [0];
+            var todayDate = new Date(today.dt*1000);
+            console.log (todayDate);
+        })
+
+
+
+    document.write("testing, also check your console");
+
+</script>
+
+
+
+</body>
+</html>
