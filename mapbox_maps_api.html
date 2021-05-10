@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The MapBox API</title>
+
+</head>
+<body>
+
+    <h3>Mapbox API</h3>
+    <div id='map' style='width: 500px; height: 500px;'></div>
+
+    <button id="ten">10</button>
+    <button id="fifteen">15</button>
+    <button id="twenty">20</button>
+
+
+
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<script src="JS/jquery-3.6.0.js" ></script>
+<script src="JS/keys.js"></script>
+<script src="JS/mapbox-geocoder-utils.js"></script>
+
+<script>
+
+    var accessToken = MAPBOX_ACCESS_TOKEN;
+
+    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+
+
+    var alamoInfo  = [{
+        address: "2347 NW Military Hwy, San Antonio, TX 78231",
+        popupHTML: "<p>Sichuan Garden</p>"
+    },{
+        address: "20323 Huebner Rd, San Antonio, TX 78258",
+        popupHTML: "<p>India Taj Palace</p>"
+    },{
+        address: " 3039 TPC Pkwy, San Antonio, TX 78259",
+        popupHTML: "<p>Las Palapas</p>"
+    }];
+
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 1,
+        center: [-98.4916, 29.4252]
+    });
+
+    // alamoInfo.forEach(function (alamo){
+    //     console.log(alamo);
+    //     geocode(alamo.address, MAPBOX_ACCESS_TOKEN).then (function (coordinates) {
+    //         var popup = new mapboxgl.Popup()
+    //                     .setHTML(info.popupHTML);
+    //                 var marker = new mapboxgl.Marker()
+    //                     .setLngLat(coordinates)
+    //                     .addTo(map)
+    //                     .setPopup(popup);
+    //                 popup.addTo(map);
+    //     })
+    // })
+
+    function placeMarkerAndPopup(info, token, map) {
+        geocode(info.address, token).then(function(coordinates) {
+            var popup = new mapboxgl.Popup()
+                .setHTML(info.popupHTML);
+            var marker = new mapboxgl.Marker()
+                .setLngLat(coordinates)
+                .addTo(map)
+                .setPopup(popup);
+            popup.addTo(map);
+        });
+    }
+
+
+
+
+    // setTimeout(function() {
+    //     map.setZoom(10);
+    // }, 1000);
+    // setTimeout(function(){
+    //     map.setZoom(15)
+    // }, 2000);
+    // setTimeout(function() {
+    //     map.setZoom(20)
+    // }, 3000);
+
+
+
+
+    alamoInfo.forEach(placeMarkerAndPopup)
+    placeMarkerAndPopup(alamoInfo, MAPBOX_ACCESS_TOKEN, map);
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

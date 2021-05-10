@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OPEN WEATHER API PLAYGROUND</title>
+</head>
+<body>
+<h1>open console</h1>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous" ></script>
+<script src="JS/keys.js"></script>
+<script>
+
+    var coordiantes = [30.3585, -103.6610];
+    $.get("https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat="+coordiantes[0]+ "&lon=" +
+        coordiantes[1]+ "&exclude=current,hourly,minute&appid="+WEATHER_MAP_TOKEN)
+        .done(function (resp){
+            console.log(resp);
+            var today= resp.daily [0];
+            var todayDate = new Date(today.dt*1000);
+            console.log (todayDate);
+        })
+
+
+
+    document.write("testing, also check your console");
+
+</script>
+
+
+</body>
+</html>
