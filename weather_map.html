@@ -17,7 +17,9 @@
          margin-left: auto ;
          margin-rigt: auto;
       }
-
+      p {
+          font-size: 10px;
+      }
 
   </style>
 </head>
@@ -29,16 +31,23 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <body id="body">
 <!--basic card form-->
-<h3 class="d-flex row justify-content-center">Weather Map Project</h3>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Weather Map Project</a>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+    <button id="search-button" type="button">Search</button>
+</nav>
 
 
+
+</div>
+<br>
 <div  id='map' style='width: 600px; height: 500px; display: block; margin-left: auto; margin-right: auto;'
-      class="rounded">
+      class="rounded border">
 </div>
 
 <br>
 
-<div class="containerMAIN">
+<div class="main">
     <h3 class="d-flex row justify-content-center">8 Day Forecast</h3>
     <div id="spawnInfo" class="d-flex row justify-content-center"></div>
 </div>
@@ -64,9 +73,24 @@
     });
 
 
-    var coordinates = [29.421,-98.4936]
 
 
+    var marker = new mapboxgl.Marker ( {
+        draggable: true,
+        color:"blue"
+
+    })
+
+        .setLngLat([-98.4936, 29.421])
+        .addTo(map)
+
+    // coordinates using writeToPage
+    var coordinates = [marker.getLngLat().lat, marker.getLngLat().lng];
+    marker.on("dragend",function (){
+        coordinates = [marker.getLngLat().lat, marker.getLngLat().lng];
+        console.log(coordinates)
+        writeToPage()
+    })
     function writeToPage () {
         $.ajax("https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" + coordinates[0] + "&lon=" + coordinates[1] + "&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN)
         .done (function (response) {
@@ -82,20 +106,23 @@
 
                 var html ="";
 
-                html = "<div style='background: white' class='container rounded col-sm weather-" + (i + 1) +
+                html = "<div style='background: lightgrey;' class='container border col-sm weather-" + (i + 1) +
                     "'>";
                 html += "<div class='headerContainer'><h6>" + dateToday + "</h6></div>"
 
                 //show weather if today then the rest
 
                 if (i === 0){
-                    html += "<h6>Temp: "+Math.round(response.current.temp)+"</h6>";
+                    html += "<p>Desc: "+response.current.weather[0].main +"</p>";
+                    html += "<p>Temp: "+Math.round(response.current.temp)+"</p>";
+                    html += "<p>Press: "+Math.round(response.current.pressure)+"</p>";
+                    html += "<p>Wind: "+Math.round(response.current.wind_speed)+" mph</p>";
                 } else {
-                    html += "<h6>Temp: "+Math.round(response.daily[i].temp.day)+"</h6>" ;
+                    html += "<p>Desc: "+response.daily[i].weather[0].main+"</p>";
+                    html += "<p>Temp: "+Math.round(response.daily[i].temp.day)+"</p>";
+                    html += "<p>Press: "+Math.round(response.daily[i].pressure)+"</p>";
+                    html += "<p>Wind: "+Math.round(response.daily[i].wind_speed)+" mph</p>";
                 }
-
-
-
 
                 $("#spawnInfo").append(html);
 
@@ -103,6 +130,20 @@
             console.log(response)
         });
 
+        $("#search-button").click(function (){
+            searchInput = $ ("#search-input").val();
+            // console.log(searchInput);
+            moveMarkerWithSearch()
+        })
+        function moveMarkerWithSearch () {
+            geocode(searchInput, MAPBOX_ACCESS_TOKEN).then (function (here) {
+                marker.setLngLat(here)
+                coordinates = [marker.getLngLat().lat,marker.getLngLat().lat];
+
+                map.flyTo({ center: here, zoom: 5, speed: 12});
+                writeToPage();
+            })
+        }
     }
     writeToPage();
 </script>
