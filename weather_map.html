@@ -2,60 +2,110 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>Weather Map Project</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <style>
 
-        .column {
-            float: left;
-            width: 33.33%;
-            padding: 10px;
-            height: 300px;
-        }
-        .row:after {
-            content:"";
-            display: table;
-            clear: both;
+      body {
 
-        }
-    </style>
+            }
+      #body{
+          background: coral;
+      }
+      #map {
+         display: block;
+         margin-left: auto ;
+         margin-rigt: auto;
+      }
+
+
+  </style>
 </head>
-<body>
-<h3>Display the weather of the current city you live in</h3>
-<div class="row">
-    <div class="column" style="background-color: pink" id="dayOne">
-    <h3>Weather</h3>
-    </div>
-    <div class="column" style="background-color: lightblue" id="dayTwo">
-        <h3>Weather</h3>
-    </div>
-    <div class="column" style="background-color: lightgreen" id="dayThree"">
-        <h3>Weather</h3>
-    </div>
+
+
+
+<pre id="json"></pre>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body id="body">
+<!--basic card form-->
+<h3 class="d-flex row justify-content-center">Weather Map Project</h3>
+
+
+<div  id='map' style='width: 600px; height: 500px; display: block; margin-left: auto; margin-right: auto;'
+      class="rounded">
 </div>
+
+<br>
+
+<div class="containerMAIN">
+    <h3 class="d-flex row justify-content-center">8 Day Forecast</h3>
+    <div id="spawnInfo" class="d-flex row justify-content-center"></div>
+</div>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="JS/keys.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+<script src="JS/mapbox-geocoder-utils.js"></script>
 <script>
+    // TO MAKE THE MAP APPEAR YOU MUST
+    // ADD YOUR ACCESS TOKEN FROM
+    // https://account.mapbox.com
+    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: [-98.4936, 29.421], // starting position [lng, lat]
+        zoom: 9 // starting zoom
+    });
 
-    var coordinate = [29.4241, -98.4936];
-    $.get("https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat="+coordinate[0]+ "&lon=" +
-        coordinate[1]+ "&exclude=current,hourly,minute&appid="+WEATHER_MAP_TOKEN)
-        .done(function (resp){
-            console.log(resp);
-            var today= resp.daily [0];
-            var todayDate = new Date(today.dt*1000);
-            console.log (todayDate);
-        })
+
+    var coordinates = [29.421,-98.4936]
+
+
+    function writeToPage () {
+        $.ajax("https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" + coordinates[0] + "&lon=" + coordinates[1] + "&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN)
+        .done (function (response) {
+            $("#spawnInfo").html("");
+            for (var i = 0; i < response.daily.length; i++) {
+                var today = response.daily[i];
+                var dateToday = new Date(today.dt*1000);
+                dateToday = dateToday.toDateString();
 
 
 
-    document.write("testing, also check your console");
+                ///creating HTML
 
+                var html ="";
+
+                html = "<div style='background: white' class='container rounded col-sm weather-" + (i + 1) +
+                    "'>";
+                html += "<div class='headerContainer'><h6>" + dateToday + "</h6></div>"
+
+                //show weather if today then the rest
+
+                if (i === 0){
+                    html += "<h6>Temp: "+Math.round(response.current.temp)+"</h6>";
+                } else {
+                    html += "<h6>Temp: "+Math.round(response.daily[i].temp.day)+"</h6>" ;
+                }
+
+
+
+
+                $("#spawnInfo").append(html);
+
+            }
+            console.log(response)
+        });
+
+    }
+    writeToPage();
 </script>
-
-
-
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>-->
 </body>
 </html>
