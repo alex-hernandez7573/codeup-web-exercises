@@ -5,10 +5,6 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>Weather Map Project</title>
   <style>
-
-      body {
-
-            }
       #body{
           background: coral;
       }
@@ -18,26 +14,27 @@
          margin-rigt: auto;
       }
       p {
-          font-size: 10px;
+          font-size: 12px;
       }
-
   </style>
 </head>
 
 
-
-<pre id="json"></pre>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <body id="body">
-<!--basic card form-->
+
+
+<!--whats on the page-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Weather Map Project</a>
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
     <button id="search-button" type="button">Search</button>
 </nav>
 
-
+<div class="main">
+    <h3 class="d-flex row justify-content-center">8 Day Forecast</h3>
+    <div id="spawnInfo" class="d-flex row justify-content-center"></div>
+</div>
 
 </div>
 <br>
@@ -46,14 +43,6 @@
 </div>
 
 <br>
-
-<div class="main">
-    <h3 class="d-flex row justify-content-center">8 Day Forecast</h3>
-    <div id="spawnInfo" class="d-flex row justify-content-center"></div>
-</div>
-
-
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="JS/keys.js"></script>
@@ -72,19 +61,15 @@
         zoom: 9 // starting zoom
     });
 
-
-
-
+    // creation of marker
     var marker = new mapboxgl.Marker ( {
         draggable: true,
         color:"blue"
-
     })
-
         .setLngLat([-98.4936, 29.421])
         .addTo(map)
 
-    // coordinates using writeToPage
+    /// cords using lng lat now then write to pages
     var coordinates = [marker.getLngLat().lat, marker.getLngLat().lng];
     marker.on("dragend",function (){
         coordinates = [marker.getLngLat().lat, marker.getLngLat().lng];
@@ -93,59 +78,59 @@
     })
     function writeToPage () {
         $.ajax("https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" + coordinates[0] + "&lon=" + coordinates[1] + "&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN)
-        .done (function (response) {
-            $("#spawnInfo").html("");
-            for (var i = 0; i < response.daily.length; i++) {
-                var today = response.daily[i];
+        .done (function (respAPI) { $("#spawnInfo").html("");
+
+                //// running through the
+            for (var i = 0; i < respAPI.daily.length; i++) {
+                var today = respAPI.daily[i];
                 var dateToday = new Date(today.dt*1000);
                 dateToday = dateToday.toDateString();
 
 
 
                 ///creating HTML
-
                 var html ="";
-
-                html = "<div style='background: lightgrey;' class='container border col-sm weather-" + (i + 1) +
-                    "'>";
-                html += "<div class='headerContainer'><h6>" + dateToday + "</h6></div>"
-
-                //show weather if today then the rest
-
+                //show current then everything else
                 if (i === 0){
-                    html += "<p>Desc: "+response.current.weather[0].main +"</p>";
-                    html += "<p>Temp: "+Math.round(response.current.temp)+"</p>";
-                    html += "<p>Press: "+Math.round(response.current.pressure)+"</p>";
-                    html += "<p>Wind: "+Math.round(response.current.wind_speed)+" mph</p>";
-                } else {
-                    html += "<p>Desc: "+response.daily[i].weather[0].main+"</p>";
-                    html += "<p>Temp: "+Math.round(response.daily[i].temp.day)+"</p>";
-                    html += "<p>Press: "+Math.round(response.daily[i].pressure)+"</p>";
-                    html += "<p>Wind: "+Math.round(response.daily[i].wind_speed)+" mph</p>";
+                    html = "<div style='background: lightgreen;' class='card col -" + (i + 1) + "'>";
+                    html += "<div class='card-title'><h9>" + dateToday + "</h9></div>"
+                    html += "<p class='card-text'>Desc: "+respAPI.current.weather[0].main +"</p>";
+                    html += "<p class='card-text'>Temp: "+(respAPI.current.temp)+"</p>";
+                    html += "<p class='card-text'>Press: "+(respAPI.current.pressure)+"</p>";
+                    html += "<p class='card-text'>Wind: "+(respAPI.current.wind_speed)+" mph</p>";
+                    html += "<p class='card-text'>Humidity: "+(respAPI.current.humidity)+"</p>";
+                    } else {
+                    html = "<div style='background: lightgreen;' class='card col -" + (i + 1) + "'>";
+                    html += "<div class='card-title'><h9>" + dateToday + "</h9></div>"
+                    html += "<p class='card-text' >Desc: "+respAPI.daily[i].weather[0].main+"</p>";
+                    html += "<p class='card-text' >Temp: "+(respAPI.daily[i].temp.day)+"</p>";
+                    html += "<p class='card-text' >Press: "+(respAPI.daily[i].pressure)+"</p>";
+                    html += "<p class='card-text' >Wind: "+(respAPI.daily[i].wind_speed)+" mph</p>";
+                    html += "<p class='card-text'>Humidity: "+(respAPI.daily[i].humidity)+"</p>";
                 }
-
                 $("#spawnInfo").append(html);
-
             }
-            console.log(response)
+            console.log(respAPI)
         });
+
+        // search button for moveMarker
 
         $("#search-button").click(function (){
             searchInput = $ ("#search-input").val();
-            // console.log(searchInput);
             moveMarkerWithSearch()
         })
+        // moving marker and using writeToPage
         function moveMarkerWithSearch () {
             geocode(searchInput, MAPBOX_ACCESS_TOKEN).then (function (here) {
                 marker.setLngLat(here)
                 coordinates = [marker.getLngLat().lat,marker.getLngLat().lat];
-
                 map.flyTo({ center: here, zoom: 5, speed: 12});
-                writeToPage();
+                 writeToPage();
             })
         }
     }
     writeToPage();
+    // document.getElementsByClassName("hideThis")[1].style.visibility('none');
 </script>
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>-->
 </body>
