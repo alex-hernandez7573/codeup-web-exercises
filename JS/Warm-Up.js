@@ -12,3 +12,9 @@ for (var i=1; i < 30; i++){
 
     else console.log(i);
 }
+
+function giveMebackSeven () {
+    return 7;
+}
+
+console.log(giveMebackSeven())
